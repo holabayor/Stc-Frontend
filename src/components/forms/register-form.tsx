@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,7 +40,7 @@ export default function RegisterForm() {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    const [res, error] = await RegisterAction({ ...data, role: UserRole.STUDENT });
+    const [res, error] = await RegisterAction({ ...data, role: UserRole.PARENT });
 
     if (res) {
       ToastSuccess(res.message);
@@ -49,13 +48,13 @@ export default function RegisterForm() {
     if (error) {
       ToastError(error);
     }
-    form.reset();
+    // form.reset();
   }
 
 
   return (
 
-    <div className="min-h-screen lex-col items-center justify-center">
+    <div className="flex-col items-center justify-center">
       <div className="w-full max-w-md">
         {/* Back to Home Button */}
         <Link
